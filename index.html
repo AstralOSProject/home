@@ -1,7 +1,209 @@
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#000000">
-<meta name="description" content="AstralOS — a custom Android ROM for miatoll.">
+<meta name="description" content="AstralOS — a custom Android ROM for Xiaomi Redmi Note 9 Pro (miatoll).">
 <title>AstralOS</title>
 <style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(960px,calc(100% - 40px));margin:auto}
+nav{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1a1a1a}
+.nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:15px;letter-spacing:.04em}
+.links{display:flex;gap:24px;color:#777;font-size:13px}
+.links a:hover{color:#fff;transition:color .2s}
+.hero{min-height:calc(100vh - 64px);display:flex;align-items:center;border-bottom:1px solid #1a1a1a}
+.hero-inner{padding:90px 0}
+.logo{display:block;width:170px;height:auto;margin-bottom:50px;filter:drop-shadow(0 0 40px rgba(255,255,255,.08))}
+.kicker{margin:0 0 18px;color:#555;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:700}
+h1{margin:0 0 24px;font-size:clamp(58px,11vw,112px);line-height:.86;letter-spacing:-.065em}
+.hero-copy{max-width:560px;color:#999;font-size:18px;margin:0}
+.actions{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:1px solid #333;font-size:13px;font-weight:700;transition:all .2s}
+.btn:hover{border-color:#fff}
+.primary{background:#fff;color:#000;border-color:#fff}
+.primary:hover{background:transparent;color:#fff}
+.secondary{border-color:#333}
+.secondary:hover{border-color:#888}
+section{padding:100px 0;border-bottom:1px solid #1a1a1a}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-bottom:44px}
+h2{margin:0;font-size:clamp(36px,5vw,56px);line-height:.95;letter-spacing:-.05em}
+.section-head p{margin:0;color:#888;max-width:450px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #1a1a1a}
+.card{padding:28px 24px 28px 0;border-bottom:1px solid #1a1a1a}
+.card+.card{border-left:1px solid #1a1a1a;padding-left:24px}
+.card h3{margin:0 0 8px;font-size:15px;letter-spacing:.01em}
+.card p{margin:0;color:#777;font-size:14px;line-height:1.5}
+.device{display:grid;grid-template-columns:1.3fr .7fr;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a}
+.device-main{padding:36px 36px 36px 0}
+.status{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#4a9;font-weight:700}
+.device h3{margin:14px 0 10px;font-size:46px;line-height:1;letter-spacing:-.04em}
+.device p{margin:0;color:#888;max-width:570px;font-size:15px}
+.meta{border-left:1px solid #1a1a1a;padding:36px 0 36px 36px}
+.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #1a1a1a;font-size:13px;gap:20px}
+.label{color:#555}.value{text-align:right;color:#ccc}
+.download{margin-top:24px}
+.download small{display:block;color:#555;margin-bottom:12px;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.faq{max-width:760px}
+details{border-top:1px solid #1a1a1a;padding:22px 0}
+details:last-child{border-bottom:1px solid #1a1a1a}
+summary{cursor:pointer;list-style:none;font-size:15px;font-weight:700;transition:color .2s}
+summary:hover{color:#ccc}
+summary::-webkit-details-marker{display:none}
+details p{color:#777;font-size:14px;margin:14px 0 0;line-height:1.6}
+footer{padding:30px 0 44px;color:#444;font-size:12px}
+.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:#666;transition:color .2s}
+footer a:hover{color:#aaa}
+@media(max-width:700px){
+ .wrap{width:min(960px,calc(100% - 28px))}
+ .hero-inner{padding:70px 0}
+ .logo{width:135px;margin-bottom:38px}
+ .section-head,.device{grid-template-columns:1fr}
+ .section-head p{margin-top:18px}
+ .grid{grid-template-columns:1fr}
+ .card,.card+.card{border-left:0;padding:22px 0;border-bottom:1px solid #1a1a1a}
+ .meta{border-left:0;border-top:1px solid #1a1a1a;padding:28px 0}
+ .device-main{padding:28px 0}
+ .links{gap:14px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap nav">
+    <a class="brand" href="#top">AstralOS</a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#support">Download</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://astralosproject.github.io/legal/">Legal</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+<header class="hero">
+  <div class="wrap hero-inner">
+    <img class="logo" src="logo.png" alt="AstralOS logo">
+    <p class="kicker">Custom Android ROM · Xiaomi Redmi Note 9 Pro</p>
+    <h1>Beyond stock.</h1>
+    <p class="hero-copy">A focused Android experience built around simplicity, performance, and control. Based on LineageOS 22 for miatoll.</p>
+    <div class="actions">
+      <a class="btn primary" href="#support">Latest build</a>
+      <a class="btn secondary" href="#features">Features</a>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Nothing<br>unnecessary.</h2>
+      <p>AstralOS keeps the experience clean and puts the details that matter back in your hands.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <h3>Google Sans Flex</h3>
+        <p>System-wide typography upgraded to Google's variable font for a cleaner look across the entire UI.</p>
+      </article>
+      <article class="card">
+        <h3>Performance tuned</h3>
+        <p>Optimized Dalvik heap, ZRAM with lz4hc, CPU input boost, and dex2oat compiler flags for snappier everyday use.</p>
+      </article>
+      <article class="card">
+        <h3>AstralOS Features</h3>
+        <p>Built-in settings page with toggles for Always-On Display, Night Light, and Adaptive Sleep.</p>
+      </article>
+      <article class="card">
+        <h3>Custom boot animation</h3>
+        <p>Star field fade-in with a pulsing AstralOS logo — designed to match the ROM's visual identity.</p>
+      </article>
+      <article class="card">
+        <h3>Branded everywhere</h3>
+        <p>From the setup wizard to recovery and the Easter egg, every touchpoint reflects AstralOS.</p>
+      </article>
+      <article class="card">
+        <h3>Stable base</h3>
+        <p>Built on LineageOS 22.2 with Android 15. Practical defaults, focused device support, and room to grow.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Supported<br>device.</h2>
+      <p>Miatoll is currently the supported AstralOS target, with more devices planned as builds mature.</p>
+    </div>
+    <div class="device">
+      <div class="device-main">
+        <div class="status">Official</div>
+        <h3>Xiaomi Redmi Note 9 Pro</h3>
+        <p>Codename miatoll. Includes curtana, joyeuse, excalibur, and gram variants. Check the download section for the latest build and installation instructions.</p>
+      </div>
+      <div class="meta">
+        <div class="row"><span class="label">Codename</span><span class="value">miatoll</span></div>
+        <div class="row"><span class="label">Base</span><span class="value">LineageOS 22.2</span></div>
+        <div class="row"><span class="label">Android</span><span class="value">15</span></div>
+        <div class="row"><span class="label">Maintainer</span><span class="value">bearbeing</span></div>
+        <div class="download">
+          <small>First stable release</small>
+          <a class="btn primary" href="https://github.com/astralosproject/releases">Download v1.0</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Before you<br>flash.</h2>
+      <p>Everything you need to know before installing AstralOS.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>What devices are supported?</summary>
+        <p>Currently only Xiaomi Redmi Note 9 Pro (miatoll). This includes all miatoll variants: curtana, joyeuse, excalibur, and gram. More devices may be added in the future.</p>
+      </details>
+      <details>
+        <summary>How do I install AstralOS?</summary>
+        <p>Flash the latest LineageOS recovery for miatoll, then sideload the AstralOS zip via ADB. A full wipe is recommended when coming from stock MIUI or another ROM. Detailed instructions will be provided with each release.</p>
+      </details>
+      <details>
+        <summary>Do I need to unlock the bootloader?</summary>
+        <p>Yes. Unlocking the bootloader is required before flashing any custom ROM. Use Xiaomi's official unlock tool or your preferred method.</p>
+      </details>
+      <details>
+        <summary>Will OTA updates work?</summary>
+        <p>AstralOS includes a built-in updater. Updates will be pushed through the OTA system as new builds are released.</p>
+      </details>
+      <details>
+        <summary>Where do I get help?</summary>
+        <p>Open an issue on the <a href="https://github.com/astralosproject">GitHub repository</a> or reach out through the community channels.</p>
+      </details>
+      <details>
+        <summary>Is Google services included?</summary>
+        <p>No. AstralOS does not ship with Google Apps. You can flash a GApps package of your choice after installing the ROM, or use it de-Googled.</p>
+      </details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer">
+    <div>&copy; <span id="year"></span> AstralOS Project</div>
+    <a href="https://astralosproject.github.io/legal/">Privacy &amp; Legal</a>
+  </div>
+</footer>
+<script>document.getElementById("year").textContent=new Date().getFullYear()</script>
+</body>
+</html>
